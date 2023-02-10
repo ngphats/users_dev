@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import './product.dart';
 
@@ -98,6 +100,26 @@ class MyCustomFormState extends State<MyCustomForm> {
 
                   var myProduct = Product(price, quantity: qyt);
                   int totalPrice = myProduct.showTotal();
+
+                  // test fn here..
+                  List product = [
+                    {
+                      'product_code': 'product_01',
+                      'maker_code': 'maker_01',
+                    },
+                    {
+                      'product_code': 'product_02',
+                      'maker_code': 'maker_02',
+                    }
+                  ];
+
+                  int lengthProduct = product.length;
+                  print(lengthProduct);
+
+                  for (var element in product) {
+                    print(element['product_code']);
+                    print(element['maker_code']);
+                  }
 
                   // If the form is valid, display a snackbar. In the real world,
                   // you'd often call a server or save the information in a database.

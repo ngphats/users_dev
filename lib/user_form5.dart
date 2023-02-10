@@ -77,10 +77,11 @@ class _SignUpFormState extends State<SignUpForm> {
     loadGenderList();
     // Build a Form widget using the _formKey we created above
     return Form(
-        key: _formKey,
-        child: ListView(
-          children: getFormWidget(),
-        ));
+      key: _formKey,
+      child: ListView(
+        children: getFormWidget(),
+      ),
+    );
   }
 
   List<Widget> getFormWidget() {
@@ -249,7 +250,7 @@ class _SignUpFormState extends State<SignUpForm> {
     void onPressedSubmit() {
       if (_formKey.currentState!.validate() && _termsChecked) {
         _formKey.currentState?.save();
-
+/*
         print("Name " + _name);
         print("Email " + _email);
         print("Age " + _age.toString());
@@ -267,13 +268,34 @@ class _SignUpFormState extends State<SignUpForm> {
         print("Marital Status " + _maritalStatus);
         print("Password " + _password);
         print("Termschecked " + _termsChecked.toString());
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text('Form Submitted')));
+*/
+        Map currentUser = {
+          'name': _name,
+          'email': _email,
+          'age': _age,
+          'gender': _selectedGender,
+          'married': _maritalStatus,
+          'password': _password,
+        };
+
+        print(currentUser);
+
+        // save to firebase here!
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Form Submitted'),
+          ),
+        );
       }
     }
 
-    formWidget.add(ElevatedButton(
-        onPressed: onPressedSubmit, child: const Text('Sign Up')));
+    formWidget.add(
+      ElevatedButton(
+        onPressed: onPressedSubmit,
+        child: const Text('Sign Up'),
+      ),
+    );
 
     return formWidget;
   }
