@@ -51,8 +51,6 @@ class _SignUpFormState extends State<SignUpForm> {
   int _age = -1;
   String _maritalStatus = 'single';
   int _selectedGender = 0;
-  String _password = '';
-  bool _termsChecked = true;
 
   List<DropdownMenuItem<int>> genderList = [];
 
@@ -72,9 +70,28 @@ class _SignUpFormState extends State<SignUpForm> {
     ));
   }
 
+  void loadUserInfo() {
+    Map userInfo = {
+      'name': 'user2',
+      'email': 'ngphats@gmail.com',
+      'age': 20,
+      'gender': 0,
+      'married': 'married'
+    };
+
+    _name = userInfo['name'];
+    _email = userInfo['email'];
+    _age = int.parse(userInfo['age']);
+    _selectedGender = userInfo['gender'];
+    _maritalStatus = userInfo['married'];
+  }
+
   @override
   Widget build(BuildContext context) {
     loadGenderList();
+
+    loadUserInfo();
+
     // Build a Form widget using the _formKey we created above
     return Form(
       key: _formKey,
@@ -88,8 +105,11 @@ class _SignUpFormState extends State<SignUpForm> {
     List<Widget> formWidget = [];
 
     formWidget.add(TextFormField(
-      decoration:
-          const InputDecoration(labelText: 'Enter Name', hintText: 'Name'),
+      initialValue: _name,
+      decoration: const InputDecoration(
+        labelText: 'Enter Name',
+        hintText: 'Name',
+      ),
       validator: (value) {
         if (value!.isEmpty) {
           return 'Please enter a name';
@@ -120,6 +140,7 @@ class _SignUpFormState extends State<SignUpForm> {
     }
 
     formWidget.add(TextFormField(
+      initialValue: _email,
       decoration: const InputDecoration(
         labelText: 'Enter Email',
         hintText: 'Email',
@@ -134,6 +155,7 @@ class _SignUpFormState extends State<SignUpForm> {
     ));
 
     formWidget.add(TextFormField(
+      initialValue: _age,
       decoration: const InputDecoration(
         hintText: 'Age',
         labelText: 'Enter Age',
@@ -190,69 +212,8 @@ class _SignUpFormState extends State<SignUpForm> {
       ],
     ));
 
-    formWidget.add(
-      TextFormField(
-          key: _passKey,
-          obscureText: true,
-          decoration: const InputDecoration(
-              hintText: 'Password', labelText: 'Enter Password'),
-          validator: (value) {
-            if (value!.isEmpty) {
-              return 'Please Enter password';
-            } else if (value.length < 8) {
-              return 'Password should be more than 8 characters';
-            } else {
-              return null;
-            }
-          }),
-    );
-
-    formWidget.add(
-      TextFormField(
-          obscureText: true,
-          decoration: const InputDecoration(
-              hintText: 'Confirm Password',
-              labelText: 'Enter Confirm Password'),
-          validator: (confirmPassword) {
-            if (confirmPassword != null && confirmPassword.isEmpty) {
-              return 'Enter confirm password';
-            }
-            var password = _passKey.currentState?.value;
-            if (confirmPassword != null &&
-                confirmPassword.compareTo(password) != 0) {
-              return 'Password mismatch';
-            } else {
-              return null;
-            }
-          },
-          onSaved: (value) {
-            setState(() {
-              _password = value.toString();
-            });
-          }),
-    );
-
-    formWidget.add(CheckboxListTile(
-      value: _termsChecked,
-      onChanged: (value) {
-        setState(() {
-          _termsChecked = value.toString().toLowerCase() == 'true';
-        });
-      },
-      subtitle: !_termsChecked
-          ? const Text(
-              'Required',
-              style: TextStyle(color: Colors.red, fontSize: 12.0),
-            )
-          : null,
-      title: const Text(
-        'I agree to the terms and condition',
-      ),
-      controlAffinity: ListTileControlAffinity.leading,
-    ));
-
     void onPressedSubmit() {
-      if (_formKey.currentState!.validate() && _termsChecked) {
+      if (_formKey.currentState!.validate()) {
         _formKey.currentState?.save();
 /*
         print("Name " + _name);
@@ -279,7 +240,6 @@ class _SignUpFormState extends State<SignUpForm> {
           'age': _age,
           'gender': _selectedGender,
           'married': _maritalStatus,
-          'password': _password,
         };
 
         print(currentUser);
@@ -297,7 +257,7 @@ class _SignUpFormState extends State<SignUpForm> {
     formWidget.add(
       ElevatedButton(
         onPressed: onPressedSubmit,
-        child: const Text('Sign Up'),
+        child: const Text('Edit'),
       ),
     );
 
