@@ -20,6 +20,7 @@ class FormPage extends StatefulWidget {
   final String title;
 
   @override
+  // ignore: library_private_types_in_public_api
   _FormPageState createState() => _FormPageState();
 }
 
@@ -32,19 +33,22 @@ class _FormPageState extends State<FormPage> {
       ),
       body: Container(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-          child: SignUpForm()),
+          child: const SignUpForm()),
     );
   }
 }
 
 class SignUpForm extends StatefulWidget {
+  const SignUpForm({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _SignUpFormState createState() => _SignUpFormState();
 }
 
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
-  final _passKey = GlobalKey<FormFieldState>();
+  // final _passKey = GlobalKey<FormFieldState>();
 
   String _name = '';
   String _email = '';
@@ -155,7 +159,6 @@ class _SignUpFormState extends State<SignUpForm> {
     ));
 
     formWidget.add(TextFormField(
-      initialValue: _age,
       decoration: const InputDecoration(
         hintText: 'Age',
         labelText: 'Enter Age',
@@ -234,15 +237,15 @@ class _SignUpFormState extends State<SignUpForm> {
         print("Password " + _password);
         print("Termschecked " + _termsChecked.toString());
 */
-        Map currentUser = {
-          'name': _name,
-          'email': _email,
-          'age': _age,
-          'gender': _selectedGender,
-          'married': _maritalStatus,
-        };
+        // Map currentUser = {
+        //   'name': _name,
+        //   'email': _email,
+        //   'age': _age,
+        //   'gender': _selectedGender,
+        //   'married': _maritalStatus,
+        // };
 
-        print(currentUser);
+        // print(currentUser);
 
         // save to firebase here!
 

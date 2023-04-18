@@ -254,25 +254,25 @@ class _SignUpFormState extends State<SignUpForm> {
     void onPressedSubmit() {
       if (_formKey.currentState!.validate() && _termsChecked) {
         _formKey.currentState?.save();
-/*
-        print("Name " + _name);
-        print("Email " + _email);
-        print("Age " + _age.toString());
-        switch (_selectedGender) {
-          case 0:
-            print("Gender Male");
-            break;
-          case 1:
-            print("Gender Female");
-            break;
-          case 3:
-            print("Gender Others");
-            break;
-        }
-        print("Marital Status " + _maritalStatus);
-        print("Password " + _password);
-        print("Termschecked " + _termsChecked.toString());
-*/
+        /*
+			print("Name " + _name);
+			print("Email " + _email);
+			print("Age " + _age.toString());
+			switch (_selectedGender) {
+			case 0:
+				print("Gender Male");
+				break;
+			case 1:
+				print("Gender Female");
+				break;
+			case 3:
+				print("Gender Others");
+				break;
+			}
+			print("Marital Status " + _maritalStatus);
+			print("Password " + _password);
+			print("Termschecked " + _termsChecked.toString());
+	*/
         Map currentUser = {
           'name': _name,
           'email': _email,

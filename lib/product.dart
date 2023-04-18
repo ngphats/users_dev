@@ -10,11 +10,11 @@ class Product {
 
   //Khai báo các phương thức
   calulateTotal() {
-    return this.price * this.quantity;
+    return price * quantity;
   }
 
   showTotal() {
-    var tong = this.calulateTotal();
+    var tong = calulateTotal();
     //print("Tổng số tiền là: $tong");
 
     return tong;
