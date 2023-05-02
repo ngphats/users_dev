@@ -43,10 +43,7 @@ class MyCustomForm extends StatelessWidget {
               foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
             ),
             onPressed: () {
-              // String dda = 'Toi Yeu Viet Nam.';
-
-              dynamic newProduct = new Product(50, quantity: 1);
-
+              dynamic newProduct = Product(50, quantity: 1);
               dynamic totalPrice = newProduct.showTotal();
 
               print(totalPrice);

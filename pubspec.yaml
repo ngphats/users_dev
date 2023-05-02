@@ -1,5 +1,5 @@
 name: user_dev
-description: A new Flutter project.
+description: Phat learn flutter..
 
 publish_to: 'none'
 
@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  assets_audio_player: ^3.0.6
 
 dev_dependencies:
   flutter_test:
@@ -21,4 +22,4 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - images/
+    - assets/

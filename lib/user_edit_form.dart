@@ -52,7 +52,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   String _name = '';
   String _email = '';
-  int _age = -1;
+  int _age = 1;
   String _maritalStatus = 'single';
   int _selectedGender = 0;
 
@@ -163,6 +163,7 @@ class _SignUpFormState extends State<SignUpForm> {
         hintText: 'Age',
         labelText: 'Enter Age',
       ),
+      // initialValue: _age,
       keyboardType: TextInputType.number,
       validator: (value) {
         if (value!.isEmpty) {
@@ -173,7 +174,7 @@ class _SignUpFormState extends State<SignUpForm> {
       },
       onSaved: (value) {
         setState(() {
-          _age = int.parse(value.toString());
+          // _age = int.parse(value.toString());
         });
       },
     ));
